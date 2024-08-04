@@ -4,7 +4,7 @@ This is the boilerplate for the Medical Data Visualizer project. Instructions fo
 
 In this project, you will visualize and make calculations from medical examination data using matplotlib, seaborn, and pandas. The dataset values were collected during medical examinations.
 
-Tasks
+# Tasks
 
 Create a chart similar to examples/Figure_1.png, where we show the counts of good and bad outcomes for the cholesterol, gluc, alco, active, and smoke variables for patients with cardio=1 and cardio=0 in different panels.
 
@@ -25,7 +25,7 @@ Any time a variable is set to None, make sure to set it to the correct code.
 
 Unit tests are written for you under test_module.py.
 
-Instructions
+# Instructions
 
 By each number in the medical_data_visualizer.py file, add the code from the associated instruction number below.
 
