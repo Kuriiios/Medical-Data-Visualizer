@@ -30,37 +30,37 @@ def draw_cat_plot():
     sns.set_theme(style='ticks')
 
     # 8
-    graph = sns.catplot(x='variable', y='total', hue='value', kind='bar', col='cardio', data=df_cat)
-    graph.set_axis_labels('Variable', 'Total')
-    graph.set_titles('Cardio: {col_name}')
+    fig = sns.catplot(x='variable', y='total', hue='value', kind='bar', col='cardio', data=df_cat)
+    fig.set_axis_labels('Variable', 'Total')
+    fig.set_titles('Cardio: {col_name}')
 
 
     # 9
-    plt.savefig('catplot.png')
-    plt.show()
-    #return fig
-draw_cat_plot()
+    fig.savefig('catplot.png')
+    return fig
 
 # 10
 def draw_heat_map():
     # 11
-    df_heat = None
+    df_heat = df[(df['height'] >= df['height'].quantile(0.025)) & ((df['height'] <= df['height'].quantile(0.975))) & (df['weight'] >= df['weight'].quantile(0.025)) & ((df['weight'] <= df['weight'].quantile(0.975)))] 
+    df_heat.reset_index()
 
     # 12
-    corr = None
+    corr = df_heat.corr()
+    annot_array=np.round(corr, decimals=1)
 
     # 13
-    mask = None
-
-
+    mask = np.triu(corr)
 
     # 14
-    fig, ax = None
+    fig, ax = plt.subplots()
 
     # 15
-
-
+    sns.heatmap(corr, annot=annot_array ,fmt=".1f", mask=mask, center = 0, vmin=-0.08, vmax=0.24, cbar_kws={'shrink': 0.5, 'extend':'both', 'extendrect':'true', 'ticks': [-0.08, 0.00, 0.08, 0.16, 0.24]})
 
     # 16
     fig.savefig('heatmap.png')
     return fig
+
+draw_cat_plot()
+draw_heat_map()
